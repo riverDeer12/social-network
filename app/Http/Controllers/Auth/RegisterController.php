@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Profile;
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -49,7 +49,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'gender' => 'required|bool',
             'name' => 'required|string|max:255',
+            'dob' => 'required|date',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,10 +65,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $default_cover = 'public/defaults/covers/cover.png';
+
+        if($data['gender']){
+            $avatar = 'public/defaults/avatars/male.png';
+        }else{
+            $avatar = 'public/defaults/avatars/female.png';
+        }
+
+        $user = User::create([
+            'gender' => $data['gender'],
             'name' => $data['name'],
+            'username' => str_slug($data['name']),
+            'dob' => $data['dob'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
+            'cover' => $default_cover,
+            'avatar' => $avatar,
         ]);
+
+        /* create user_id for profile table every time new user is created */
+        Profile::create(['user_id' => $user->id]);
+
+        return $user;
     }
 }

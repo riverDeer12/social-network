@@ -6,8 +6,14 @@
  */
 
 require('./bootstrap');
-
+require('vue-resource');
+require('vue-sweetalert');
 window.Vue = require('vue');
+import Vue from 'vue';
+import VueResource from 'vue-resource';
+import VueSweetAlert from 'vue-sweetalert';
+Vue.use(VueResource);
+Vue.use(VueSweetAlert);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +21,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('friend', require('./components/Friend.vue'));
+Vue.component('notification', require('./components/Notification.vue'));
 
 const app = new Vue({
     el: '#app'
