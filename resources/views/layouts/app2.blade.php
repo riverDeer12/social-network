@@ -18,7 +18,9 @@
 <div id="app">
     @include('includes.navigation')
     @yield('content')
+    <notification :id="{{ Auth::user()->id }}"></notification>
 </div>
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
