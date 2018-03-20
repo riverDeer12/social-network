@@ -19,6 +19,9 @@
     @include('includes.navigation')
     @yield('content')
     <notification :id="{{ Auth::user()->id }}"></notification>
+    <audio id="notification_sound">
+        <source src="{{ asset('audio/notification.mp3') }}">
+    </audio>
 </div>
 
 

@@ -16,8 +16,12 @@
             listen(){
                 Echo.private('App.User.' + this.id)
                     .notification((notification) =>{
-                        alert('New notification');
-                        console.log(notification)
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'info',
+                            text: notification.name + notification.message,
+                        });
+                        document.getElementById('notification_sound').play();
                     })
             }
         }

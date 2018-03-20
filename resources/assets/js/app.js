@@ -7,11 +7,11 @@
 
 require('./bootstrap');
 require('vue-resource');
-require('vue-sweetalert');
+require('vue-sweetalert2');
 window.Vue = require('vue');
 import Vue from 'vue';
 import VueResource from 'vue-resource';
-import VueSweetAlert from 'vue-sweetalert';
+import VueSweetAlert from 'vue-sweetalert2';
 Vue.use(VueResource);
 Vue.use(VueSweetAlert);
 

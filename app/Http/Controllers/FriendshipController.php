@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\AcceptFriendRequest;
 use App\Notifications\NewFriendRequest;
 use App\Traits\Friendable;
 use App\User;
@@ -44,6 +45,10 @@ class FriendshipController extends Controller
 
     public function accept_friend($id)
     {
-        return Auth::user()->accept_friend($id);
+        $resp =  Auth::user()->accept_friend($id);
+
+        User::find($id)->notify(new AcceptFriendRequest(Auth::user()));
+
+        return $resp;
     }
 }
