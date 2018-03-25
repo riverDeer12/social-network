@@ -17,10 +17,14 @@
                 Echo.private('App.User.' + this.id)
                     .notification((notification) =>{
                         this.$swal({
-                            position: 'top-end',
-                            type: 'info',
+                            position: 'bottom-left',
                             text: notification.name + notification.message,
+                            showConfirmButton: false,
+                            timer: 2000
                         });
+
+                        this.$store.commit('add_notification', notification);
+
                         document.getElementById('notification_sound').play();
                     })
             }

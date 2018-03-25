@@ -35,5 +35,12 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('/accept_friend/{id}', ['uses' => 'FriendshipController@accept_friend', 'as' => 'accept_friend']);
 
+    Route::get('/get_notifications', function (){
+        return Auth::user()->unreadNotifications;
+    });
+
+    Route::get('/notifications', ['uses' => 'HomeController@notifications', 'as' => 'notifications']);
 });
+
+
 
