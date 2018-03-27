@@ -20,7 +20,7 @@
                             position: 'bottom-left',
                             text: notification.name + notification.message,
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 3000
                         });
 
                         this.$store.commit('add_notification', notification);

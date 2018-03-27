@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Traits\Friendable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -16,6 +16,14 @@ export const store = new Vuex.Store({
 
         all_notifications_count(state) {
             return state.notifications.length
+        },
+
+        all_posts(state) {
+            return state.posts
+        },
+
+        all_posts_count(state) {
+            return state.posts.length
         }
     },
 

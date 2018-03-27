@@ -8,7 +8,7 @@
             <!-- Create new post form -->
             <create-post></create-post>
 
-            <div class="col-md-4 offset-1">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">Dashboard</div>
 
@@ -23,8 +23,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Posts -->
-            <news-feed></news-feed>
+            <!-- Feed posts -->
+            <feed></feed>
+
         </div>
     </div>
 @endsection
