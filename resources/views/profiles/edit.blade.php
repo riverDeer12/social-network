@@ -1,6 +1,6 @@
-@extends('layouts.app2')
+@extends('layouts.master')
 
-@section('title') SocialNetwork - Profile Details @endsection
+@section('title')Profile Details @endsection
 
 @section('content')
     <div class="container-fluid">
@@ -95,9 +95,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-
         </div>
     </div>
 @endsection

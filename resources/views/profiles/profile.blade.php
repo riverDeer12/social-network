@@ -1,16 +1,16 @@
-@extends('layouts.app2')
+@extends('layouts.master')
 
-@section('title') SocialNetwork - My Profile @endsection
+@section('title')My Profile @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 offset-md-4">
+            <div class="col-md-4">
                 <div class="card card-default">
                     <div class="card-header text-center"
                          style="background: url({{ Storage::url( $user->cover ) }}); background-size: cover;">
-                        <img class="img-responsive" src="{{ Storage::url( $user->avatar ) }}" width="150px"
-                             height="150px" style="border-radius: 50%;">
+                        <img class="img-responsive profile-img" src="{{ Storage::url( $user->avatar ) }}" width="150px"
+                             height="150px">
                     </div>
                     <div class="card-body text-center">
                         <p>Name: {{ $user->name }}</p>
@@ -71,6 +71,73 @@
                 <!-- Friend component -->
                 <friend :profile_user_id="{{ $user->id }}"></friend>
             </div>
+
+            <!-- Create new post form -->
+            <div class="col-md-4">
+                <form class="form-horizontal" action="{{ route('posts.store') }}" method="POST">
+                    {{ csrf_field() }}
+
+                    <fieldset>
+
+                        <legend class="text-center">Wanna post something?</legend>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input id="title" type="text"
+                                       class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"
+                                       value="{{ old('title') }}" required autofocus placeholder="enter title here...">
+
+                                @if ($errors->has('title'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea id="description"
+                                       class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description"
+                                          value="{{ old('description') }}" required autofocus placeholder="enter description here..."></textarea>
+
+                                @if ($errors->has('description'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input id="location" name="location" placeholder="enter location here..."
+                                       class="form-control input-md" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label class="control-label" for="image">Upload image</label>
+                            <div class="col-md-12">
+                                <input id="image" name="image" class="input-file" type="file">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+
+                        <div class="form-group">
+                            <div class="col-md-8 offset-2">
+                                <button id="postButton" name="postButton" class="btn btn-success btn-block">Create new
+                                    post !
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- Flash message -->
             <div class="col-md-3">
                 <div class="pull-right">
                     <div class="flash-message">

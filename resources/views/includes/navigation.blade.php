@@ -11,11 +11,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             @if(Auth::check())
-
+                <unread-notifications></unread-notifications>
             @endif
 
             <ul class="navbar-nav mr-auto">
-                <unread-notifications></unread-notifications>
+
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -33,6 +33,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item"
                                    href="{{ route('profile', ['username' => Auth::user()->username]) }}">My Profile</a>
+                                <a class="dropdown-item"
+                                   href="{{ route('home') }}">News Feed</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

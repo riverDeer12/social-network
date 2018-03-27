@@ -1,6 +1,6 @@
-@extends('layouts.app2')
+@extends('layouts.master')
 
-@section('title') SocialNetwork - Notifications @endsection
+@section('title')Notifications @endsection
 
 @section('content')
     <div class="container">

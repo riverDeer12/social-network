@@ -24,6 +24,8 @@ Vue.use(VueSweetAlert);
 Vue.component('friend', require('./components/Friend.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('unread-notifications', require('./components/UnreadNotifications.vue'));
+Vue.component('create-post', require('./components/CreatePost.vue'));
+Vue.component('news-feed', require('./components/NewsFeed.vue'));
 
 import { store } from "./store";
 

@@ -8,17 +8,25 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>SocialNetwork - @yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 
 <body>
 <div id="app">
     @include('includes.navigation')
     @yield('content')
+    @if(Auth::check())
+        <notification :id="{{ Auth::user()->id }}"></notification>
+    @endif
+    <audio id="notification_sound">
+        <source src="{{ asset('audio/notification.mp3') }}">
+    </audio>
 </div>
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

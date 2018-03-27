@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function (){
     });
 
     Route::get('/notifications', ['uses' => 'HomeController@notifications', 'as' => 'notifications']);
+
+    Route::get('/feed', ['uses' => 'FeedController@feed', 'as' => 'feed']);
 });
 
 
