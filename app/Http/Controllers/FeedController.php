@@ -18,7 +18,7 @@ class FeedController extends Controller
         $feed = array();
 
         foreach ($friends as $friend):
-            foreach ($friend->posts as $post):
+            foreach ($friend->posts->sortByDesc('created_at') as $post):
                 array_push($feed, $post);
             endforeach;
         endforeach;

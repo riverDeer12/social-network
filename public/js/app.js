@@ -73906,9 +73906,6 @@ var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.get_feed();
-        setInterval(function () {
-            this.get_feed();
-        }.bind(this), 5000);
     },
     data: function data() {
         return {
@@ -73930,7 +73927,7 @@ var moment = __webpack_require__(0);
             this.$http.get('/feed').then(function (response) {
                 response.body.forEach(function (post) {
                     _this.$store.commit('add_post', post);
-                }).bind(_this);
+                });
             });
         }
     }

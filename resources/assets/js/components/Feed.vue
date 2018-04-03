@@ -24,11 +24,6 @@
     export default {
         mounted() {
             this.get_feed();
-
-            // checking for new posts every 5 seconds
-            setInterval(function () {
-                this.get_feed();
-            }.bind(this), 5000);
         },
 
         data() {
@@ -49,7 +44,7 @@
                     .then((response) => {
                         response.body.forEach((post) => {
                             this.$store.commit('add_post', post)
-                        }).bind(this);
+                        })
                     })
             }
         }
