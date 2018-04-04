@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         notifications: [],
-        posts: []
+        posts: [],
+        wallPosts: []
     },
 
     getters: {
@@ -24,6 +25,10 @@ export const store = new Vuex.Store({
 
         all_posts_count(state) {
             return state.posts.length
+        },
+
+        all_wall_posts(state){
+            return state.wallPosts
         }
     },
 
@@ -34,6 +39,10 @@ export const store = new Vuex.Store({
 
         add_post(state, post) {
             state.posts.push(post)
+        },
+
+        add_wall_post(state, wallPost){
+            state.wallPosts.push(wallPost)
         }
     },
 

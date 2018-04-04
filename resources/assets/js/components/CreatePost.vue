@@ -50,7 +50,6 @@
             create_post() {
                 this.$http.post('/posts', {content: this.content})
                     .then((response) => {
-                        console.log(response);
                         this.content = '';
                     })
             }

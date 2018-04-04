@@ -12,7 +12,10 @@
                         <ul class="list-group">
                             @foreach($notifications as $notification)
                                 <li class="list-group-item">
-                                    {{ $notification->data['name']}} {{ $notification->data['message'] }}
+                                    <a href="/profile/{{ $notification->data['username'] }}">
+                                        {{ $notification->data['name']}}
+                                    </a>
+                                    {{ $notification->data['message'] }}
                                     <span class="float-right">{{ $notification->created_at->diffForHumans() }}</span>
                                 </li>
                             @endforeach

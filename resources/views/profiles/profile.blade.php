@@ -73,7 +73,7 @@
             </div>
 
             <!-- Create new post -->
-           <create-post></create-post>
+            <create-post></create-post>
 
             <!-- Flash message -->
             <div class="col-md-3">
@@ -95,4 +95,7 @@
             </div>
         </div>
     </div>
+
+    <!-- Wall posts -->
+    <profile-wall :user_id="{{ $user->id }}"></profile-wall>
 @endsection

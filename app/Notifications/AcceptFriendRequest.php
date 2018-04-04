@@ -58,6 +58,7 @@ class AcceptFriendRequest extends Notification implements ShouldQueue
     {
         return [
             'name' => $this->user->name,
+            'username' => $this->user->username,
             'message' =>  ' accepted your friend request.'
         ];
     }

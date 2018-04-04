@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/notifications', ['uses' => 'HomeController@notifications', 'as' => 'notifications']);
 
     Route::get('/feed', ['uses' => 'FeedController@feed', 'as' => 'feed']);
+
+    Route::get('/wall_posts/{user_id}', ['uses' => 'ProfileController@wall_posts', 'as' => 'wall']);
 });
 
 

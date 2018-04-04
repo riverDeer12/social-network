@@ -76,4 +76,17 @@ class ProfileController extends Controller
 
         return redirect('/profile/' . $username);
     }
+
+    public function wall_posts($user_id)
+    {
+        $user = User::where('id', $user_id)->first();
+
+        $wallPosts = array();
+
+        foreach ($user->posts->sortByDesc('created_at') as $wallPost):
+            array_push($wallPosts, $wallPost);
+        endforeach;
+
+        return $wallPosts;
+    }
 }
