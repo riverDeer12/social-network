@@ -73901,6 +73901,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -73909,7 +73918,8 @@ var moment = __webpack_require__(0);
     },
     data: function data() {
         return {
-            moment: moment
+            moment: moment,
+            loading: true
         };
     },
 
@@ -73917,6 +73927,9 @@ var moment = __webpack_require__(0);
     computed: {
         posts: function posts() {
             return this.$store.getters.all_posts;
+        },
+        postsNumber: function postsNumber() {
+            return this.$store.getters.all_posts_count;
         }
     },
 
@@ -73924,9 +73937,11 @@ var moment = __webpack_require__(0);
         get_feed: function get_feed() {
             var _this = this;
 
+            this.loading = true;
             this.$http.get('/feed').then(function (response) {
                 response.body.forEach(function (post) {
                     _this.$store.commit('add_post', post);
+                    _this.loading = false;
                 });
             });
         }
@@ -73944,16 +73959,24 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    _vm._l(_vm.posts, function(post) {
-      return _c("div", { staticClass: "row spacing" }, [
-        _c("div", { staticClass: "col-md-5 offset-4" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-body text-center" }, [
-              _vm._v(_vm._s(post.content))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _c("div", { staticClass: "float-left" }, [
+    [
+      _vm.postsNumber == 0
+        ? _c("p", { staticClass: "text-center" }, [
+            _vm._v("\n        No posts.\n    ")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("p", { staticClass: "text-center" }, [
+            _vm._v("\n        Loading...\n    ")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.posts, function(post) {
+        return _c("div", { staticClass: "row spacing" }, [
+          _c("div", { staticClass: "col-md-5 offset-4" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
                 _c("img", {
                   staticClass: "post-user-image",
                   attrs: { src: post.user.avatar }
@@ -73962,18 +73985,28 @@ var render = function() {
                 _c("span", [_vm._v(_vm._s(post.user.name))])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "float-right" }, [
-                _c("span", [
-                  _vm._v(
-                    "Posted: " + _vm._s(_vm.moment(post.created_at).fromNow())
-                  )
+              _c("div", { staticClass: "card-body text-center" }, [
+                _vm._v(_vm._s(post.content))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "float-left" }, [_c("likes")], 1),
+                _vm._v(" "),
+                _c("div", { staticClass: "float-right" }, [
+                  _c("span", [
+                    _vm._v(
+                      "Posted on: " +
+                        _vm._s(_vm.moment(post.created_at).fromNow())
+                    )
+                  ])
                 ])
               ])
             ])
           ])
         ])
-      ])
-    })
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -74104,6 +74137,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -74112,7 +74151,8 @@ var moment = __webpack_require__(0);
     },
     data: function data() {
         return {
-            moment: moment
+            moment: moment,
+            loading: true
         };
     },
 
@@ -74120,6 +74160,9 @@ var moment = __webpack_require__(0);
     computed: {
         wallPosts: function wallPosts() {
             return this.$store.getters.all_wall_posts;
+        },
+        wallPostsNumber: function wallPostsNumber() {
+            return this.$store.getters.all_wall_posts_count;
         }
     },
 
@@ -74129,9 +74172,11 @@ var moment = __webpack_require__(0);
         get_wall: function get_wall() {
             var _this = this;
 
+            this.loading = true;
             this.$http.get('/wall_posts/' + this.user_id).then(function (response) {
                 response.body.forEach(function (wallPost) {
                     _this.$store.commit('add_wall_post', wallPost);
+                    _this.loading = false;
                 });
             });
         }
@@ -74149,37 +74194,52 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    _vm._l(_vm.wallPosts, function(wallPost) {
-      return _c("div", { staticClass: "row spacing" }, [
-        _c("div", { staticClass: "col-md-5 offset-4" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-body text-center" }, [
-              _vm._v(_vm._s(wallPost.content))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _c("div", { staticClass: "float-left" }, [
-                _c("img", {
-                  staticClass: "post-user-image",
-                  attrs: { src: wallPost.user.avatar }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(wallPost.user.name))])
+    [
+      _vm.wallPostsNumber == 0
+        ? _c("p", { staticClass: "text-center" }, [
+            _vm._v("\n        No  wall posts.\n    ")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("p", { staticClass: "text-center" }, [
+            _vm._v("\n        Loading...\n    ")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.wallPosts, function(wallPost) {
+        return _c("div", { staticClass: "row spacing" }, [
+          _c("div", { staticClass: "col-md-5 offset-4" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body text-center" }, [
+                _vm._v(_vm._s(wallPost.content))
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "float-right" }, [
-                _c("span", [
-                  _vm._v(
-                    "Posted: " +
-                      _vm._s(_vm.moment(wallPost.created_at).fromNow())
-                  )
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "float-left" }, [
+                  _c("img", {
+                    staticClass: "post-user-image",
+                    attrs: { src: wallPost.user.avatar }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(wallPost.user.name))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "float-right" }, [
+                  _c("span", [
+                    _vm._v(
+                      "Posted: " +
+                        _vm._s(_vm.moment(wallPost.created_at).fromNow())
+                    )
+                  ])
                 ])
               ])
             ])
           ])
         ])
-      ])
-    })
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -74228,6 +74288,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
         },
         all_wall_posts: function all_wall_posts(state) {
             return state.wallPosts;
+        },
+        all_wall_posts_count: function all_wall_posts_count(state) {
+            return state.wallPosts.length;
         }
     },
 

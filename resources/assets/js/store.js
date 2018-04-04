@@ -29,6 +29,10 @@ export const store = new Vuex.Store({
 
         all_wall_posts(state){
             return state.wallPosts
+        },
+
+        all_wall_posts_count(state){
+            return state.wallPosts.length
         }
     },
 

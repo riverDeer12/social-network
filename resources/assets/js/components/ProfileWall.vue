@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+        <p class="text-center" v-if="wallPostsNumber == 0">
+            No  wall posts.
+        </p>
+        <p class="text-center" v-if="loading">
+            Loading...
+        </p>
         <div class="row spacing" v-for="wallPost in wallPosts">
             <div class="col-md-5 offset-4">
                 <div class="card">
@@ -28,13 +34,18 @@
 
         data() {
             return {
-                moment: moment
+                moment: moment,
+                loading: true
             }
         },
 
         computed: {
             wallPosts() {
                 return this.$store.getters.all_wall_posts
+            },
+
+            wallPostsNumber(){
+                return this.$store.getters.all_wall_posts_count
             }
         },
 
@@ -42,10 +53,12 @@
 
         methods: {
             get_wall() {
+                this.loading = true;
                 this.$http.get('/wall_posts/' + this.user_id)
                     .then((response) => {
                         response.body.forEach((wallPost) => {
-                            this.$store.commit('add_wall_post', wallPost)
+                            this.$store.commit('add_wall_post', wallPost);
+                            this.loading = false;
                         })
                     })
             }
