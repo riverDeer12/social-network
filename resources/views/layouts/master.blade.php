@@ -17,6 +17,7 @@
 
 <body>
 <div id="app">
+    <init></init>
     @include('includes.navigation')
     @yield('content')
     @if(Auth::check())

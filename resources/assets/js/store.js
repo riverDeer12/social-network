@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
     state: {
         notifications: [],
         posts: [],
-        wallPosts: []
+        wallPosts: [],
+        auth_user: {}
     },
 
     getters: {
@@ -27,11 +28,11 @@ export const store = new Vuex.Store({
             return state.posts.length
         },
 
-        all_wall_posts(state){
+        all_wall_posts(state) {
             return state.wallPosts
         },
 
-        all_wall_posts_count(state){
+        all_wall_posts_count(state) {
             return state.wallPosts.length
         }
     },
@@ -45,8 +46,12 @@ export const store = new Vuex.Store({
             state.posts.push(post)
         },
 
-        add_wall_post(state, wallPost){
+        add_wall_post(state, wallPost) {
             state.wallPosts.push(wallPost)
+        },
+
+        add_auth_user_data(state, user) {
+            state.auth_user = user;
         }
     },
 

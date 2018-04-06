@@ -51,7 +51,7 @@
                 this.$http.post('/posts', {content: this.content})
                     .then((response) => {
                         this.content = '';
-                    })
+                    });
             }
         }
     }

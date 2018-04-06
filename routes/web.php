@@ -44,6 +44,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/feed', ['uses' => 'FeedController@feed', 'as' => 'feed']);
 
     Route::get('/wall_posts/{user_id}', ['uses' => 'ProfileController@wall_posts', 'as' => 'wall']);
+
+    Route::get('/get_auth_user_data', function (){
+       return Auth::user();
+    });
 });
 
 

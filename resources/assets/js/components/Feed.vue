@@ -16,10 +16,10 @@
                     <div class="card-body text-center">{{ post.content }}</div>
                     <div class="card-footer">
                         <div class="float-left">
-                            <likes></likes>
+                            <like :id="post.id"></like>
                         </div>
                         <div class="float-right">
-                            <span>Posted on: {{ moment(post.created_at).fromNow() }}</span>
+                            <span>Posted: {{ moment(post.created_at).fromNow() }}</span>
                         </div>
                     </div>
                 </div>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+    import Like from './Like.vue';
     let moment = require('moment');
     export default {
         mounted() {
@@ -49,6 +50,10 @@
             postsNumber() {
                 return this.$store.getters.all_posts_count
             }
+        },
+
+        components:{
+            Like
         },
 
         methods: {
