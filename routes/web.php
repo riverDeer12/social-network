@@ -48,6 +48,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/get_auth_user_data', function (){
        return Auth::user();
     });
+
+    Route::get('/like_post', ['uses' => 'LikeController@like', 'as' => 'like']);
+
+    Route::get('/unlike_post', ['uses' => 'LikeController@unlike', 'as' => 'unlike']);
 });
 
 

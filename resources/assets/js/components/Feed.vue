@@ -3,7 +3,7 @@
         <p class="text-center" v-if="postsNumber == 0">
             No posts.
         </p>
-        <p class="text-center" v-if="loading">
+        <p class="text-center" v-else>
             Loading...
         </p>
         <div class="row spacing" v-for="post in posts">

@@ -65,7 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $default_cover = 'public/defaults/covers/cover.png';
+        $default_cover = 'public/defaults/covers/cover.jpg';
 
         if($data['gender']){
             $avatar = 'public/defaults/avatars/male.png';
