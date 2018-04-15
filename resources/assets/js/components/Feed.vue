@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <p class="text-center" v-if="postsNumber == 0">
-            No posts.
-        </p>
-        <p class="text-center" v-else>
+        <p class="text-center" v-if="loading">
             Loading...
+        </p>
+        <p class="text-center" v-if="postsNumber === 0">
+            No posts.
         </p>
         <div class="row spacing" v-for="post in posts">
             <div class="col-md-5 offset-4">

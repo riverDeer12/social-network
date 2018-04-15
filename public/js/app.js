@@ -43107,7 +43107,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(143);
-module.exports = __webpack_require__(217);
+module.exports = __webpack_require__(212);
 
 
 /***/ }),
@@ -43122,7 +43122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_sweetalert2__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(210);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -43155,7 +43155,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('notification', __webpack_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('unread-notifications', __webpack_require__(191));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('create-post', __webpack_require__(196));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('feed', __webpack_require__(201));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('profile-wall', __webpack_require__(210));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('like', __webpack_require__(141));
 
 
@@ -74185,7 +74184,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74196,6 +74195,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -74243,6 +74243,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return post.id === _this.id;
             });
         }
+    },
+
+    methods: {
+        like_post: function like_post() {
+            var _this2 = this;
+
+            this.$http.get('/like_post/' + this.id).then(function (response) {
+                _this2.$store.commit('update_post_likes', {
+                    id: _this2.id,
+                    like: response.body
+                });
+            });
+
+            this.$swal({
+                type: "success",
+                position: 'bottom-left',
+                text: 'Post liked',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        },
+        unlike_post: function unlike_post() {
+            var _this3 = this;
+
+            this.$http.get('/unlike_post/' + this.id).then(function (response) {
+                _this3.$store.commit('unlike_post', {
+                    id: _this3.id,
+                    like_id: response.body
+                });
+            });
+        }
     }
 });
 
@@ -74258,12 +74289,30 @@ var render = function() {
     "div",
     [
       !_vm.auth_user_liked_post
-        ? _c("button", { staticClass: "btn btn-success" }, [
-            _vm._v("\n        Like\n    ")
-          ])
-        : _c("button", { staticClass: "btn btn-warning" }, [
-            _vm._v("\n        Unlike\n    ")
-          ]),
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              on: {
+                click: function($event) {
+                  _vm.like_post()
+                }
+              }
+            },
+            [_vm._v("\n        Like\n    ")]
+          )
+        : _c(
+            "button",
+            {
+              staticClass: "btn btn-warning",
+              on: {
+                click: function($event) {
+                  _vm.unlike_post()
+                }
+              }
+            },
+            [_vm._v("\n        Unlike\n    ")]
+          ),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -74311,13 +74360,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm.postsNumber == 0
+      _vm.loading
+        ? _c("p", { staticClass: "text-center" }, [
+            _vm._v("\n        Loading...\n    ")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.postsNumber === 0
         ? _c("p", { staticClass: "text-center" }, [
             _vm._v("\n        No posts.\n    ")
           ])
-        : _c("p", { staticClass: "text-center" }, [
-            _vm._v("\n        Loading...\n    ")
-          ]),
+        : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
         return _c("div", { staticClass: "row spacing" }, [
@@ -74372,249 +74425,11 @@ if (false) {
 
 /***/ }),
 /* 210 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(211)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(213)
-/* template */
-var __vue_template__ = __webpack_require__(214)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\ProfileWall.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1ee6e028", Component.options)
-  } else {
-    hotAPI.reload("data-v-1ee6e028", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 211 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(212);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("77e03a4d", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1ee6e028\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileWall.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1ee6e028\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProfileWall.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 212 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.spacing {\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.post-user-image {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 213 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var moment = __webpack_require__(0);
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        this.get_wall();
-    },
-    data: function data() {
-        return {
-            moment: moment,
-            loading: true
-        };
-    },
-
-
-    computed: {
-        wallPosts: function wallPosts() {
-            return this.$store.getters.all_wall_posts;
-        },
-        wallPostsNumber: function wallPostsNumber() {
-            return this.$store.getters.all_wall_posts_count;
-        }
-    },
-
-    props: ['user_id'],
-
-    methods: {
-        get_wall: function get_wall() {
-            var _this = this;
-
-            this.loading = true;
-            this.$http.get('/wall_posts/' + this.user_id).then(function (response) {
-                response.body.forEach(function (wallPost) {
-                    _this.$store.commit('add_wall_post', wallPost);
-                    _this.loading = false;
-                });
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 214 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _vm.wallPostsNumber == 0
-        ? _c("p", { staticClass: "text-center" }, [
-            _vm._v("\n        No  wall posts.\n    ")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.loading
-        ? _c("p", { staticClass: "text-center" }, [
-            _vm._v("\n        Loading...\n    ")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._l(_vm.wallPosts, function(wallPost) {
-        return _c("div", { staticClass: "row spacing" }, [
-          _c("div", { staticClass: "col-md-5 offset-4" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("img", {
-                  staticClass: "post-user-image",
-                  attrs: { src: wallPost.user.avatar }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(wallPost.user.name))])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body text-center" }, [
-                _vm._v(_vm._s(wallPost.content))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-footer" }, [
-                _c("div", { staticClass: "float-left" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "float-right" }, [
-                  _c("span", [
-                    _vm._v(
-                      "Posted: " +
-                        _vm._s(_vm.moment(wallPost.created_at).fromNow())
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1ee6e028", module.exports)
-  }
-}
-
-/***/ }),
-/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 
@@ -74663,13 +74478,33 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
         },
         add_auth_user_data: function add_auth_user_data(state, user) {
             state.auth_user = user;
+        },
+        update_post_likes: function update_post_likes(state, payload) {
+            var likedPost = state.posts.find(function (post) {
+                return post.id === payload.id;
+            });
+
+            likedPost.likes.push(payload.like);
+        },
+        unlike_post: function unlike_post(state, payload) {
+            var post = state.posts.find(function (p) {
+                return p.id === payload.id;
+            });
+
+            var like = post.likes.find(function (l) {
+                return l.id === payload.like_id;
+            });
+
+            var index = post.likes.indexOf(like);
+
+            post.likes.splice(index, 1);
         }
     }
 
 });
 
 /***/ }),
-/* 216 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75614,7 +75449,7 @@ var index_esm = {
 
 
 /***/ }),
-/* 217 */
+/* 212 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

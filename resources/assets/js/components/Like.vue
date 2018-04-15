@@ -1,14 +1,15 @@
 <template>
     <div>
-        <button class="btn btn-success" v-if="!auth_user_liked_post" @click="like_post">
+        <button class="btn btn-success" v-if="!auth_user_liked_post" @click="like_post()">
             Like
         </button>
-        <button class="btn btn-warning" v-else @click="unlike_post">
+        <button class="btn btn-warning" v-else @click="unlike_post()">
             Unlike
         </button>
         <hr>
         <p class="float-left" v-for="like in post.likes">
-            <a :title="like.user.name" :href="'/profile/' + like.user.username"><img :src="like.user.avatar" height="40px" width="40px"></a>
+            <a :title="like.user.name" :href="'/profile/' + like.user.username"><img :src="like.user.avatar"
+                                                                                     height="40px" width="40px"></a>
         </p>
     </div>
 </template>
@@ -50,14 +51,35 @@
             }
         },
 
-        methods:{
-            like_post(){
+        methods: {
+            like_post() {
+                this.$http.get('/like_post/' + this.id)
+                    .then((response) => {
+                        this.$store.commit('update_post_likes', {
+                            id: this.id,
+                            like: response.body,
+                        })
+                    });
 
+                this.$swal({
+                    type: "success",
+                    position: 'bottom-left',
+                    text: 'Post liked',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
             },
 
-            unlike_post(){
-
+            unlike_post() {
+                this.$http.get('/unlike_post/' + this.id)
+                    .then((response) => {
+                        this.$store.commit('unlike_post', {
+                            id: this.id,
+                            like_id: response.body,
+                        })
+                    });
             }
+
         }
     }
 </script>

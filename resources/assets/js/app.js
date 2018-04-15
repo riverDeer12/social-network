@@ -30,7 +30,6 @@ Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('unread-notifications', require('./components/UnreadNotifications.vue'));
 Vue.component('create-post', require('./components/CreatePost.vue'));
 Vue.component('feed', require('./components/Feed.vue'));
-Vue.component('profile-wall', require('./components/ProfileWall.vue'));
 Vue.component('like', require('./components/Like.vue'));
 
 import { store } from "./store";

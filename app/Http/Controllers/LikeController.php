@@ -13,21 +13,24 @@ class LikeController extends Controller
     {
         $post = Post::findOrFail($post_id);
 
-        return Like::create([
+        $like = Like::create([
             'user_id' => Auth::id(),
             'post_id' => $post->id
         ]);
+
+        return Like::find($like->id);
     }
 
     public function unlike($post_id)
     {
-        $post = Post::findOrFail($post_id)->first();
+        $post = Post::findOrFail($post_id);
 
-        Like::where('user_id', Auth::id())
+        $like = Like::where('user_id', Auth::id())
             ->where('post_id', $post->id)
-            ->first()
-            ->delete();
+            ->first();
 
-        return 1;
+        $like->delete();
+
+        return $like->id;
     }
 }

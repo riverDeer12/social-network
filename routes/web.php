@@ -49,9 +49,9 @@ Route::group(['middleware' => 'auth'], function (){
        return Auth::user();
     });
 
-    Route::get('/like_post', ['uses' => 'LikeController@like', 'as' => 'like']);
+    Route::get('/like_post/{post_id}', ['uses' => 'LikeController@like', 'as' => 'like']);
 
-    Route::get('/unlike_post', ['uses' => 'LikeController@unlike', 'as' => 'unlike']);
+    Route::get('/unlike_post/{post_id}', ['uses' => 'LikeController@unlike', 'as' => 'unlike']);
 });
 
 
