@@ -31,6 +31,7 @@ Vue.component('unread-notifications', require('./components/UnreadNotifications.
 Vue.component('create-post', require('./components/CreatePost.vue'));
 Vue.component('feed', require('./components/Feed.vue'));
 Vue.component('like', require('./components/Like.vue'));
+Vue.component('search', require('./components/Search.vue'));
 
 import { store } from "./store";
 

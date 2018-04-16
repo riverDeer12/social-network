@@ -18,5 +18,7 @@ class UsersTableSeeder extends Seeder
               );
           }
         );
+
+        factory(\App\Friendship::class, 20)->create();
     }
 }

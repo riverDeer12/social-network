@@ -4,12 +4,13 @@ namespace App;
 
 use App\Traits\Friendable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
-    use Notifiable, Friendable;
+    use Notifiable, Friendable, Searchable;
 
     /**
      * The attributes that are mass assignable.

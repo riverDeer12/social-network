@@ -151,6 +151,8 @@ return [
          * Package Service Providers...
          */
 
+        Laravel\Scout\ScoutServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

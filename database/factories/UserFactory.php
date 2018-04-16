@@ -16,11 +16,12 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
     $name = $faker->name;
+    $gender = [0, 1];
     return [
         'name' => $name,
         'email' => $faker->unique()->safeEmail,
         'username' => str_slug($name),
-        'gender' => 0,
+        'gender' => array_rand($gender),
         'dob' => $faker->dateTimeThisCentury,
         'avatar' => 'public/defaults/avatars/female.png',
         'cover' => 'public/defaults/covers/cover.jpg',
@@ -30,8 +31,18 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 $factory->define(App\Profile::class, function (Faker $faker) {
-    return[
-      'location' => $faker->city,
-      'about' => $faker->paragraph(4)
+    return [
+        'location' => $faker->city,
+        'about' => $faker->paragraph(4),
+        'profession' => $faker->jobTitle,
     ];
 });
+
+$factory->define(App\Friendship::class, function (Faker $faker) {
+    return [
+        'requester' =>  $faker->unique()->numberBetween(1, 40),
+        'requested_user' => $faker->unique()->numberBetween(1, 40),
+        'status' => 1,
+    ];
+});
+
