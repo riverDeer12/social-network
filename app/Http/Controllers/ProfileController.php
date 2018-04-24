@@ -34,7 +34,6 @@ class ProfileController extends Controller
 
     public function update($username, Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
         ]);
@@ -77,7 +76,7 @@ class ProfileController extends Controller
         return redirect('/profile/' . $username);
     }
 
-    public function wall_posts($user_id)
+    public function wall($user_id)
     {
         $user = User::where('id', $user_id)->first();
 

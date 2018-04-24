@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
     state: {
         notifications: [],
         posts: [],
-        wallPosts: [],
+        wall: [],
         auth_user: {}
     },
 
@@ -28,12 +28,12 @@ export const store = new Vuex.Store({
             return state.posts.length
         },
 
-        all_wall_posts(state) {
-            return state.wallPosts
+        wall(state) {
+            return state.wall
         },
 
-        all_wall_posts_count(state) {
-            return state.wallPosts.length
+        wall_count(state) {
+            return state.wall.length
         }
     },
 
@@ -47,7 +47,7 @@ export const store = new Vuex.Store({
         },
 
         add_wall_post(state, wallPost) {
-            state.wallPosts.push(wallPost)
+            state.wall.push(wallPost)
         },
 
         add_auth_user_data(state, user) {
@@ -55,25 +55,47 @@ export const store = new Vuex.Store({
         },
 
         update_post_likes(state, payload) {
-            let likedPost = state.posts.find((post) =>{
-               return post.id === payload.id;
+            let likedPost = state.posts.find((post) => {
+                return post.id === payload.id;
+            });
+
+            likedPost.likes.push(payload.like);
+        },
+
+        update_wall_post_likes(state, payload) {
+            let likedPost = state.wall.find((post) =>{
+                return post.id === payload.id;
             });
 
             likedPost.likes.push(payload.like);
         },
 
         unlike_post(state, payload) {
-            let post = state.posts.find((p) =>{
+            let post = state.posts.find((p) => {
                 return p.id === payload.id;
             });
 
-            let like = post.likes.find((l) =>{
+            let like = post.likes.find((l) => {
                 return l.id === payload.like_id
             });
 
             let index = post.likes.indexOf(like);
 
             post.likes.splice(index, 1);
+        },
+
+        unlike_wall_post(state, payload) {
+            let wall = state.wall.find((post) => {
+                return post.id === payload.id;
+            });
+
+            let like = wall.likes.find((l) => {
+                return l.id === payload.like_id
+            });
+
+            let index = wall.likes.indexOf(like);
+
+            wall.likes.splice(index, 1);
         }
     },
 

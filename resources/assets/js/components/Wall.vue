@@ -3,23 +3,23 @@
         <p class="text-center" v-if="loading">
             Loading...
         </p>
-        <p class="text-center" v-if="postsNumber === 0">
+        <p class="text-center" v-if="wall_count === 0">
             No posts.
         </p>
-        <div class="row spacing" v-for="post in posts">
+        <div class="row spacing" v-for="wall_post in wall">
             <div class="col-md-5 offset-4">
                 <div class="card">
                     <div class="card-header">
-                        <img class="post-user-image" :src="post.user.avatar">
-                        <span>{{ post.user.name }}</span>
+                        <img class="post-user-image" :src="wall_post.user.avatar">
+                        <span>{{ wall_post.user.name }}</span>
                     </div>
-                    <div class="card-body text-center">{{ post.content }}</div>
+                    <div class="card-body text-center">{{ wall_post.content }}</div>
                     <div class="card-footer">
                         <div class="float-left">
-                            <like :id="post.id"></like>
+                            <wall-like :id="wall_post.id"></wall-like>
                         </div>
                         <div class="float-right">
-                            <span>Posted: {{ moment(post.created_at).fromNow() }}</span>
+                            <span>Posted: {{ moment(wall_post.created_at).fromNow() }}</span>
                         </div>
                     </div>
                 </div>
@@ -29,12 +29,14 @@
 </template>
 
 <script>
-    import Like from './Like.vue';
     let moment = require('moment');
+    import WallLike from './WallLike';
     export default {
         created() {
-            this.get_feed();
+            this.get_wall();
         },
+
+        props:['user_id'],
 
         data() {
             return {
@@ -44,26 +46,26 @@
         },
 
         computed: {
-            posts() {
-                return this.$store.getters.all_posts
+            wall() {
+                return this.$store.getters.wall
             },
 
-            postsNumber() {
-                return this.$store.getters.all_posts_count
+            wall_count() {
+                return this.$store.getters.wall_count
             }
         },
 
         components:{
-            Like
+          WallLike
         },
 
         methods: {
-            get_feed() {
+            get_wall() {
                 this.loading = true;
-                this.$http.get('/feed')
+                this.$http.get('/wall/' + this.user_id)
                     .then((response) => {
-                        response.body.forEach((post) => {
-                            this.$store.commit('add_post', post);
+                        response.body.forEach((wall_post) => {
+                            this.$store.commit('add_wall_post', wall_post);
                             this.loading = false;
                         })
                     })

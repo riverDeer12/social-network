@@ -97,5 +97,5 @@
     </div>
 
     <!-- Wall posts -->
-
+    <wall :user_id="{{ $user->id }}"></wall>
 @endsection
