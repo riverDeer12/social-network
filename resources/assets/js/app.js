@@ -34,6 +34,7 @@ Vue.component('like', require('./components/Like.vue'));
 Vue.component('wall-like', require('./components/WallLike.vue'));
 Vue.component('search', require('./components/Search.vue'));
 Vue.component('wall', require('./components/Wall.vue'));
+Vue.component('my-friends', require('./components/MyFriends.vue'));
 
 import { store } from "./store";
 

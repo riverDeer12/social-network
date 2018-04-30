@@ -8,7 +8,8 @@ export const store = new Vuex.Store({
         notifications: [],
         posts: [],
         wall: [],
-        auth_user: {}
+        auth_user: {},
+        friends: []
     },
 
     getters: {
@@ -34,6 +35,14 @@ export const store = new Vuex.Store({
 
         wall_count(state) {
             return state.wall.length
+        },
+
+        all_friends(state){
+            return state.friends
+        },
+
+        all_friends_count(state){
+            return state.friends.length
         }
     },
 
@@ -96,6 +105,10 @@ export const store = new Vuex.Store({
             let index = wall.likes.indexOf(like);
 
             wall.likes.splice(index, 1);
+        },
+
+        add_friend(state, friend){
+            state.friends.push(friend);
         }
     },
 

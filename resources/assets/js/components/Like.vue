@@ -1,10 +1,10 @@
 <template>
     <div>
         <button class="btn btn-success" v-if="!auth_user_liked_post" @click="like_post()">
-            Like
+            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" alt="" width="20px" height="20px"> Like
         </button>
         <button class="btn btn-warning" v-else @click="unlike_post()">
-            Unlike
+            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-down.svg" alt="" width="20px" height="20px"> Unlike
         </button>
         <hr>
         <p class="float-left" v-for="like in post.likes">

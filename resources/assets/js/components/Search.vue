@@ -2,15 +2,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <input type="text" class="form-control" @keyup="search" v-model="query" placeholder="Search...">
+                <input type="text" class="form-control" @keyup="search" v-model="query"
+                       placeholder="Search for other users...">
             </div>
         </div>
-        <div class="dropdown col-md-6" style="max-height: 100px; overflow-y: auto;">
+        <div class="search-results-div" v-show="hiddenResults">
             <div class="list-group" v-if="results.length">
-                <div class="list-group-item" v-for="user in results">
+                <span class="list-group-item" v-for="user in results">
                     <a :href="'/profile/' + user.username"><img :src="user.avatar"
-                                                                height="40px" width="40px">{{ user.name}}</a>
-                </div>
+                                                                height="40px" width="40px"> {{ user.name}} </a>
+                </span>
             </div>
         </div>
     </div>
@@ -30,7 +31,18 @@
         data() {
             return {
                 query: '',
+                hiddenResults: false,
                 results: []
+            }
+        },
+
+        watch: {
+            query() {
+                if (this.query.length > 0) {
+                    this.hiddenResults = true;
+                } else {
+                  this.hiddenResults = false;
+                }
             }
         },
 
@@ -46,5 +58,20 @@
 </script>
 
 <style scoped>
-
+    .search-results-div {
+        overflow-y: auto;
+        background: #fff;
+        border: solid 1px #e6e6e6;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
+        box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
+        display: block;
+        left: 46%;
+        margin-left: -121px;
+        position: absolute;
+        right: -12px;
+        top: 62px;
+        width: 280px;
+        z-index: 9;
+    }
 </style>

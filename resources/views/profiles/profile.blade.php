@@ -67,13 +67,37 @@
                             </span>
                         @endif
                     </div>
+
+                    <!-- Users friends -->
+                    <my-friends :user_id="{{ $user->id }}"></my-friends>
+
                 </div>
                 <!-- Users relationship -->
                 <friend :profile_user_id="{{ $user->id }}"></friend>
             </div>
 
-            <!-- Create new post -->
-            <create-post></create-post>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Wanna
+                    post something?
+                </button>
+            </div>
+
+            <!-- New post modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Post something great !</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <create-post></create-post>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
             <!-- Flash message -->
             <div class="col-md-3">

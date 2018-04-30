@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <p class="text-center" v-if="loading">
             Loading...
         </p>
@@ -7,7 +7,7 @@
             No posts.
         </p>
         <div class="row spacing" v-for="post in posts">
-            <div class="col-md-5 offset-4">
+            <div class="col-md-3 offset-4">
                 <div class="card">
                     <div class="card-header">
                         <img class="post-user-image" :src="post.user.avatar">
@@ -30,6 +30,7 @@
 
 <script>
     import Like from './Like.vue';
+
     let moment = require('moment');
     export default {
         created() {
@@ -53,7 +54,7 @@
             }
         },
 
-        components:{
+        components: {
             Like
         },
 

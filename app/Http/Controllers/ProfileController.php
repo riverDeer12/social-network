@@ -88,4 +88,12 @@ class ProfileController extends Controller
 
         return $wallPosts;
     }
+
+    public function my_friends($user_id)
+    {
+        $user = User::find($user_id);
+        $friends = $user->friends();
+
+        return $friends;
+    }
 }
