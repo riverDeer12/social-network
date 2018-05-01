@@ -1,10 +1,10 @@
 <template>
     <div class="container friends-container">
         <div class="row">
-            <span class="card-header friends-header">Friends: {{ friends_count }}</span>
+            <a class="friends-header card-header" :href="'/profile/' + this.username + '/friends'"><span>Friends: {{ friends_count }}</span></a>
         </div>
         <div class="row">
-        <span class="friend-badge friends-badge-container" v-for="friend in friends">
+        <span class="friend-badge friends-badge-container" v-for="friend in friends.slice(0, 3)">
             <a :href="'/profile/' + friend.username"><img class="img-thumbnail friend-avatar-img" :src="friend.avatar"
                                                           alt="" width="40px;" height="40px;"> {{ friend.name }} </a>
         </span>
@@ -18,7 +18,7 @@
             this.get_friends();
         },
 
-        props: ['user_id'],
+        props: ['user_id', 'username'],
 
         computed: {
             friends() {

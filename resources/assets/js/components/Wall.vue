@@ -7,7 +7,7 @@
             No posts.
         </p>
         <div class="row spacing" v-for="wall_post in wall">
-            <div class="col-md-5 offset-4">
+            <div class="col-md-10 offset-1">
                 <div class="card">
                     <div class="card-header">
                         <img class="post-user-image" :src="wall_post.user.avatar">

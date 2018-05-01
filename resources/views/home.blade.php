@@ -6,10 +6,6 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-md-4">
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Wanna post something?</button>
-            </div>
-
             <!-- Modal for new post-->
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
@@ -27,9 +23,12 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 offset-4 text-center">
+                <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#myModal">
+                    Do you want to post something?
+                </button>
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header text-center">Dashboard</div>
 
                     <div class="card-body text-center">
                         @if (session('status'))
@@ -41,11 +40,12 @@
                         You are logged in ! Welcome to SocialNetwork !
                     </div>
                 </div>
+                <feed></feed>
             </div>
 
             <div class="col-md-3 offset-1">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header text-center">News</div>
 
                     <div class="card-body text-center">
                         @if (session('status'))
@@ -54,13 +54,11 @@
                             </div>
                         @endif
 
-                        You are logged in ! Welcome to SocialNetwork !
+                        Some news about Social Network!
                     </div>
                 </div>
             </div>
 
         </div>
-        <!-- Feed posts -->
-        <feed></feed>
     </div>
 @endsection

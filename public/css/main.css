@@ -1,3 +1,11 @@
 .profile-img {
     border-radius: 50%;
 }
+
+.spacing{
+    margin: 10px;
+}
+
+.friend-row{
+    padding: 10px;
+}

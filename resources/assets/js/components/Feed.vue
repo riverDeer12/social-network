@@ -7,7 +7,7 @@
             No posts.
         </p>
         <div class="row spacing" v-for="post in posts">
-            <div class="col-md-3 offset-4">
+            <div class="text-center post-container">
                 <div class="card">
                     <div class="card-header">
                         <img class="post-user-image" :src="post.user.avatar">
@@ -83,5 +83,9 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
+    }
+
+    .post-container{
+        width: 100%;
     }
 </style>

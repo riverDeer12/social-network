@@ -44061,7 +44061,7 @@ module.exports = function exitPromise(fn, _setTimeout) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(157);
-module.exports = __webpack_require__(260);
+module.exports = __webpack_require__(265);
 
 
 /***/ }),
@@ -44076,7 +44076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_sweetalert2__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(263);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -44113,7 +44113,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('like', __webpack_require_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('wall-like', __webpack_require__(151));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('search', __webpack_require__(228));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('wall', __webpack_require__(253));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('my-friends', __webpack_require__(267));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('my-friends', __webpack_require__(258));
 
 
 
@@ -75010,7 +75010,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.spacing {\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.post-user-image {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.spacing {\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.post-user-image {\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n}\n.post-container{\n    width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -75344,7 +75344,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
         return _c("div", { staticClass: "row spacing" }, [
-          _c("div", { staticClass: "col-md-3 offset-4" }, [
+          _c("div", { staticClass: "text-center post-container" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [
                 _c("img", {
@@ -75699,7 +75699,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.search-results-div[data-v-7b88e3df] {\n    overflow-y: auto;\n    background: #fff;\n    border: solid 1px #e6e6e6;\n    border-radius: 3px;\n    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .0975);\n    box-shadow: 0 0 5px rgba(0, 0, 0, .0975);\n    display: block;\n    left: 46%;\n    margin-left: -121px;\n    position: absolute;\n    right: -12px;\n    top: 62px;\n    width: 280px;\n    z-index: 9;\n}\n", ""]);
+exports.push([module.i, "\n.search-results-div[data-v-7b88e3df] {\n    overflow-y: auto;\n    background: #fff;\n    border: solid 1px #e6e6e6;\n    border-radius: 3px;\n    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .0975);\n    box-shadow: 0 0 5px rgba(0, 0, 0, .0975);\n    display: block;\n    left: 46%;\n    margin-left: -121px;\n    position: absolute;\n    right: -12px;\n    top: 62px;\n    width: 280px;\n    z-index: 9;\n}\n.search-input[data-v-7b88e3df]{\n    border: none;\n    padding: 3px;\n}\n", ""]);
 
 // exports
 
@@ -75710,6 +75710,9 @@ exports.push([module.i, "\n.search-results-div[data-v-7b88e3df] {\n    overflow-
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -81253,7 +81256,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "col-md-8 form-control" }, [
         _c("input", {
           directives: [
             {
@@ -81263,7 +81266,7 @@ var render = function() {
               expression: "query"
             }
           ],
-          staticClass: "form-control",
+          staticClass: "col-md-11 search-input",
           attrs: { type: "text", placeholder: "Search for other users..." },
           domProps: { value: _vm.query },
           on: {
@@ -81275,7 +81278,9 @@ var render = function() {
               _vm.query = $event.target.value
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _vm._m(0)
       ])
     ]),
     _vm._v(" "),
@@ -81313,7 +81318,25 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "https://www.algolia.com/" } }, [
+      _c("span", [
+        _c("img", {
+          attrs: {
+            src:
+              "https://files.startupranking.com/startup/thumb/15195_ab7ab3df0baf45fe1ec2d53ed1bf6c06b39cb582_algolia_m.png",
+            width: "30px",
+            height: "30px"
+          }
+        })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -81525,7 +81548,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.wall, function(wall_post) {
         return _c("div", { staticClass: "row spacing" }, [
-          _c("div", { staticClass: "col-md-5 offset-4" }, [
+          _c("div", { staticClass: "col-md-10 offset-1" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [
                 _c("img", {
@@ -81577,11 +81600,209 @@ if (false) {
 
 /***/ }),
 /* 258 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(259)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(261)
+/* template */
+var __vue_template__ = __webpack_require__(262)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\MyFriends.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eb4e6f3c", Component.options)
+  } else {
+    hotAPI.reload("data-v-eb4e6f3c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(260);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("4ada1665", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eb4e6f3c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyFriends.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eb4e6f3c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyFriends.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 260 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.row {\n    margin: 0;\n}\n.friends-container {\n    padding: 10px;\n}\n.friend-badge {\n    margin: 5px;\n}\n.friend-avatar-img {\n    border-radius: 25%;\n}\n.friends-header{\n    width: 100%;\n    text-align: center;\n}\n.friends-badge-container{\n    padding: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 261 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.get_friends();
+    },
+
+
+    props: ['user_id', 'username'],
+
+    computed: {
+        friends: function friends() {
+            return this.$store.getters.all_friends;
+        },
+        friends_count: function friends_count() {
+            return this.$store.getters.all_friends_count;
+        }
+    },
+
+    methods: {
+        get_friends: function get_friends() {
+            var _this = this;
+
+            this.$http.get('/my_friends/' + this.user_id).then(function (response) {
+                response.body.forEach(function (friend) {
+                    _this.$store.commit('add_friend', friend);
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 262 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container friends-container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "a",
+        {
+          staticClass: "friends-header card-header",
+          attrs: { href: "/profile/" + this.username + "/friends" }
+        },
+        [_c("span", [_vm._v("Friends: " + _vm._s(_vm.friends_count))])]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.friends.slice(0, 3), function(friend) {
+        return _c(
+          "span",
+          { staticClass: "friend-badge friends-badge-container" },
+          [
+            _c("a", { attrs: { href: "/profile/" + friend.username } }, [
+              _c("img", {
+                staticClass: "img-thumbnail friend-avatar-img",
+                attrs: {
+                  src: friend.avatar,
+                  alt: "",
+                  width: "40px;",
+                  height: "40px;"
+                }
+              }),
+              _vm._v(" " + _vm._s(friend.name) + " ")
+            ])
+          ]
+        )
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-eb4e6f3c", module.exports)
+  }
+}
+
+/***/ }),
+/* 263 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 
@@ -81686,7 +81907,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
 });
 
 /***/ }),
-/* 259 */
+/* 264 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82631,209 +82852,10 @@ var index_esm = {
 
 
 /***/ }),
-/* 260 */
+/* 265 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(268)
-}
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(270)
-/* template */
-var __vue_template__ = __webpack_require__(271)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\MyFriends.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-eb4e6f3c", Component.options)
-  } else {
-    hotAPI.reload("data-v-eb4e6f3c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 268 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(269);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(5)("4ada1665", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eb4e6f3c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyFriends.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-eb4e6f3c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyFriends.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 269 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.row {\n    margin: 0;\n}\n.friends-container {\n    padding: 10px;\n}\n.friend-badge {\n    margin: 5px;\n}\n.friend-avatar-img {\n    border-radius: 25%;\n}\n.friends-header{\n    width: 100%;\n    text-align: center;\n}\n.friends-badge-container{\n    padding: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 270 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        this.get_friends();
-    },
-
-
-    props: ['user_id'],
-
-    computed: {
-        friends: function friends() {
-            return this.$store.getters.all_friends;
-        },
-        friends_count: function friends_count() {
-            return this.$store.getters.all_friends_count;
-        }
-    },
-
-    methods: {
-        get_friends: function get_friends() {
-            var _this = this;
-
-            this.$http.get('/my_friends/' + this.user_id).then(function (response) {
-                response.body.forEach(function (friend) {
-                    _this.$store.commit('add_friend', friend);
-                });
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 271 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container friends-container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("span", { staticClass: "card-header friends-header" }, [
-        _vm._v("Friends: " + _vm._s(_vm.friends_count))
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      _vm._l(_vm.friends, function(friend) {
-        return _c(
-          "span",
-          { staticClass: "friend-badge friends-badge-container" },
-          [
-            _c("a", { attrs: { href: "/profile/" + friend.username } }, [
-              _c("img", {
-                staticClass: "img-thumbnail friend-avatar-img",
-                attrs: {
-                  src: friend.avatar,
-                  alt: "",
-                  width: "40px;",
-                  height: "40px;"
-                }
-              }),
-              _vm._v(" " + _vm._s(friend.name) + " ")
-            ])
-          ]
-        )
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-eb4e6f3c", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

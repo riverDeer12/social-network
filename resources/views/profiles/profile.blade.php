@@ -69,17 +69,19 @@
                     </div>
 
                     <!-- Users friends -->
-                    <my-friends :user_id="{{ $user->id }}"></my-friends>
+                    <my-friends :user_id="{{ $user->id }}" :username="'{{ $user->username }}'"></my-friends>
 
                 </div>
                 <!-- Users relationship -->
                 <friend :profile_user_id="{{ $user->id }}"></friend>
             </div>
 
-            <div class="col-md-4">
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Wanna
-                    post something?
+            <div class="col-md-4 text-center">
+                <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#myModal">
+                    Do you want to post something?
                 </button>
+                <!-- Wall posts -->
+                <wall :user_id="{{ $user->id }}"></wall>
             </div>
 
             <!-- New post modal -->
@@ -119,7 +121,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Wall posts -->
-    <wall :user_id="{{ $user->id }}"></wall>
 @endsection

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Friendship;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use function MongoDB\BSON\fromPHP;
 
 class ProfileController extends Controller
 {
@@ -95,5 +97,16 @@ class ProfileController extends Controller
         $friends = $user->friends();
 
         return $friends;
+    }
+
+    public function friends_list($username)
+    {
+        $user = User::where('username', $username)->first();
+        $friends = $user->friends();
+
+        $f1 = Friendship::where('status', 1)->where('requester', $user);
+        $f2 = Friendship::where('status', 1)->where('requested_user', $user);
+
+        return view('friends')->with(compact('friends'));
     }
 }
