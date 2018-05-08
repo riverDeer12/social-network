@@ -32,7 +32,7 @@
     let moment = require('moment');
     import WallLike from './WallLike';
     export default {
-        created() {
+        created(){
             this.get_wall();
         },
 
@@ -52,7 +52,8 @@
 
             wall_count() {
                 return this.$store.getters.wall_count
-            }
+            },
+
         },
 
         components:{

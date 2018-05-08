@@ -35,10 +35,32 @@ Vue.component('wall-like', require('./components/WallLike.vue'));
 Vue.component('search', require('./components/Search.vue'));
 Vue.component('wall', require('./components/Wall.vue'));
 Vue.component('my-friends', require('./components/MyFriends.vue'));
+Vue.component('message', require('./components/Message.vue'));
+Vue.component('message-log', require('./components/MessageLog.vue'));
+Vue.component('create-message', require('./components/CreateMessage.vue'));
 
-import { store } from "./store";
+import {store} from "./store";
 
 const app = new Vue({
     el: '#app',
-    store // shortly typed from store: store ES6
+    store, // shortly typed from store: store ES6
+    data: {
+        messages: [
+            {
+                message: 'Hey',
+                user: 'John Doe'
+            },
+            {
+                message: 'Hello',
+                user: 'Jane Doe'
+            }
+        ]
+    },
+
+    methods: {
+        addMessage(message) {
+            console.log('Message added');
+            this.messages.push(message);
+        }
+    }
 });

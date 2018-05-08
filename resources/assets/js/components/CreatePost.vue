@@ -16,10 +16,6 @@
 
 <script>
     export default {
-        mounted() {
-
-        },
-
         data() {
             return {
                 content: '',
@@ -49,7 +45,7 @@
                             confirmButtonColor: '#218838'
                         })
                     });
-            }
+            },
         }
     }
 </script>

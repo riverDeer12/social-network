@@ -36,6 +36,8 @@
                             <a class="dropdown-item"
                                href="{{ route('profile', ['username' => Auth::user()->username]) }}">My Profile</a>
                             <a class="dropdown-item"
+                               href="{{ route('messages', ['username' => Auth::user()->username ]) }}">Messages</a>
+                            <a class="dropdown-item"
                                href="{{ route('home') }}">News Feed</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

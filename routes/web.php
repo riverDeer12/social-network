@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
 
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/profile/{username}', ['uses' => 'ProfileController@index', 'as' => 'profile']);
 
@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('/accept_friend/{id}', ['uses' => 'FriendshipController@accept_friend', 'as' => 'accept_friend']);
 
-    Route::get('/get_notifications', function (){
+    Route::get('/get_notifications', function () {
         return Auth::user()->unreadNotifications;
     });
 
@@ -45,8 +45,8 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('/wall/{user_id}', ['uses' => 'ProfileController@wall', 'as' => 'wall']);
 
-    Route::get('/get_auth_user_data', function (){
-       return Auth::user();
+    Route::get('/get_auth_user_data', function () {
+        return Auth::user();
     });
 
     Route::get('/like_post/{post_id}', ['uses' => 'LikeController@like', 'as' => 'like']);
@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route:: get('/my_friends/{user_id}', ['uses' => 'ProfileController@my_friends', 'as' => 'myfriends']);
 
     Route:: get('/profile/{username}/friends', ['uses' => 'ProfileController@friends_list', 'as' => 'friendslist']);
+
+    Route::get('/profile/{username}/messages', ['uses' => 'MessagesController@messages', 'as' => 'messages']);
 });
 
 

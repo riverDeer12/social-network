@@ -104,9 +104,22 @@ class ProfileController extends Controller
         $user = User::where('username', $username)->first();
         $friends = $user->friends();
 
-        $f1 = Friendship::where('status', 1)->where('requester', $user);
-        $f2 = Friendship::where('status', 1)->where('requested_user', $user);
+        $friendships1 = array();
+        $friendships2 = array();
 
-        return view('friends')->with(compact('friends'));
+        $f1 = Friendship::all()->where('status', 1)->where('requester', $user->id);
+        $f2 = Friendship::all()->where('status', 1)->where('requested_user', $user->id);
+
+        foreach ($f1 as $friendship1):
+            array_push($friendships1, $friendship1);
+        endforeach;
+
+        foreach ($f2 as $friendship2):
+            array_push($friendships2, $friendship2);
+        endforeach;
+
+        $friendships = array_merge($friendships1, $friendships2);
+
+        return view('friends')->with(compact('friendships', 'friends'));
     }
 }
