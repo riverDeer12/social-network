@@ -12,26 +12,16 @@ class User extends Authenticatable
 {
     use Notifiable, Friendable, Searchable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'gender', 'name', 'username', 'dob', 'cover', 'avatar', 'email', 'password'
-    ];
+    protected $fillable = ['gender', 'name', 'username', 'dob', 'cover', 'avatar', 'email', 'password'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     *
-     * @var array
-     */
     protected $dates = ['dob'];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
+
+    public function getAvatarAttribute($avatar)
+    {
+        return asset(Storage::url($avatar));
+    }
 
     public function profile()
     {
@@ -48,8 +38,10 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    public function getAvatarAttribute($avatar)
+    public function messages()
     {
-        return asset(Storage::url($avatar));
+        return $this->hasMany(Message::class);
     }
+
+
 }

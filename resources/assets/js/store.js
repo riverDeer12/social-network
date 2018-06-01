@@ -37,11 +37,11 @@ export const store = new Vuex.Store({
             return state.wall.length
         },
 
-        all_friends(state){
+        all_friends(state) {
             return state.friends
         },
 
-        all_friends_count(state){
+        all_friends_count(state) {
             return state.friends.length
         }
     },
@@ -72,7 +72,7 @@ export const store = new Vuex.Store({
         },
 
         update_wall_post_likes(state, payload) {
-            let likedPost = state.wall.find((post) =>{
+            let likedPost = state.wall.find((post) => {
                 return post.id === payload.id;
             });
 
@@ -107,7 +107,7 @@ export const store = new Vuex.Store({
             wall.likes.splice(index, 1);
         },
 
-        add_friend(state, friend){
+        add_friend(state, friend) {
             state.friends.push(friend);
         }
     },

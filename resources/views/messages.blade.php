@@ -7,9 +7,8 @@
         <div class="row">
             <h3>Messenger</h3>
         </div>
-        <div class="col-md-5">
-            <message-log :messages="messages"></message-log>
-            <create-message @messagesent="addMessage"></create-message>
+        <div class="col-md-10">
+            <messenger :user_id="{{ Auth::user()->id}}"></messenger>
         </div>
     </div>
 @endsection

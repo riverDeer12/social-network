@@ -38,11 +38,16 @@ $factory->define(App\Profile::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Friendship::class, function (Faker $faker) {
+$factory->define(App\Message::class, function (Faker $faker) {
+    do {
+        $from = rand(1, 40);
+        $to = rand(1, 40);
+    } while ($from === $to);
+
     return [
-        'requester' =>  $faker->unique()->numberBetween(1, 40),
-        'requested_user' => $faker->unique()->numberBetween(1, 40),
-        'status' => 1,
+        'from' => $from,
+        'to' => $to,
+        'message' => $faker->sentence,
     ];
 });
 

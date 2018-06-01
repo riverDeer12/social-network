@@ -60,12 +60,12 @@
         border-radius: 25%;
     }
 
-    .friends-header{
+    .friends-header {
         width: 100%;
         text-align: center;
     }
 
-    .friends-badge-container{
+    .friends-badge-container {
         padding: 10px;
     }
 </style>

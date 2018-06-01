@@ -57,4 +57,4 @@ window.Echo = new Echo({
 
 Pusher.log = function (message) {
     window.console.log(message);
-}
+};
