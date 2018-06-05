@@ -51,3 +51,24 @@ $factory->define(App\Message::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+        'user_id' => rand(1, 40),
+        'post_id' => rand(1, 100),
+        'content' => $faker->sentence,
+    ];
+});
+
+$factory->define(App\Friendship::class, function (Faker $faker) {
+    do {
+        $requester = rand(1, 40);
+        $requested_user = rand(1, 40);
+    } while ($requester === $requested_user);
+
+    $status = [0,1];
+    return [
+        'requested_user' => $requested_user,
+        'requester' => $requester,
+        'status' => array_rand($status),
+    ];
+});

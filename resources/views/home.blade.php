@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 offset-4 text-center">
+            <div class="col-md-4 offset-4 text-center">
                 <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#myModal">
                     Do you want to post something?
                 </button>

@@ -25,9 +25,11 @@ Vue.use(Moment);
  */
 
 Vue.component('init', require('./components/Init.vue'));
+
 Vue.component('friend', require('./components/Friend.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('unread-notifications', require('./components/UnreadNotifications.vue'));
+
 Vue.component('create-post', require('./components/CreatePost.vue'));
 Vue.component('feed', require('./components/Feed.vue'));
 Vue.component('like', require('./components/Like.vue'));
@@ -35,11 +37,16 @@ Vue.component('wall-like', require('./components/WallLike.vue'));
 Vue.component('search', require('./components/Search.vue'));
 Vue.component('wall', require('./components/Wall.vue'));
 Vue.component('my-friends', require('./components/MyFriends.vue'));
+
 Vue.component('messenger', require('./components/Messenger.vue'));
 Vue.component('contacts-list', require('./components/ContactsList.vue'));
 Vue.component('conversation', require('./components/Conversation.vue'));
 Vue.component('messages-feed', require('./components/MessagesFeed.vue'));
-Vue.component('new-message', require('./components/NewMessage.vue'));
+
+Vue.component('post-comments', require('./components/PostComments.vue'));
+Vue.component('new-comment', require('./components/NewComment.vue'));
+Vue.component('comments-feed', require('./components/CommentsFeed.vue'));
+Vue.component('commentator', require('./components/Commentator.vue'));
 
 import {store} from "./store";
 

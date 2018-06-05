@@ -20,5 +20,7 @@ class UsersTableSeeder extends Seeder
         );
 
         factory(\App\Friendship::class, 20)->create();
+
+        factory(\App\Comment::class, 300)->create();
     }
 }

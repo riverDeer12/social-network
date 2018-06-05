@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/conversation/{contact_id}', ['uses' => 'MessageController@conversation', 'as' => 'messages.conversation']);
 
     Route::post('/conversation/send_message', ['uses' => 'MessageController@send_message', 'as' => 'messages.sendmessage']);
+
+    Route::get('/comments/{post_id}', ['uses' => 'CommentController@get_comments', 'as' => 'comments']);
+
+    Route::post('/comments/new_comment', ['uses' => 'CommentController@new_comment', 'as' => 'comments.newcomment']);
 });
 
 

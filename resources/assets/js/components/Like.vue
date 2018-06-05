@@ -6,7 +6,6 @@
         <button class="btn btn-warning" v-else @click="unlike_post()">
             <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-down.svg" alt="" width="20px" height="20px"> Unlike
         </button>
-        <hr>
         <p class="float-left" v-for="like in post.likes">
             <a :title="like.user.name" :href="'/profile/' + like.user.username"><img :src="like.user.avatar"
                                                                                      height="40px" width="40px"></a>
