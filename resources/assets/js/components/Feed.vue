@@ -1,11 +1,11 @@
 <template>
     <div class="container-fluid">
-        <p class="text-center" v-if="loading">
+        <div class="text-center" v-if="loading">
             Loading...
-        </p>
-        <p class="text-center" v-if="postsNumber === 0">
+        </div>
+        <div class="text-center" v-if="postsNumber === 0">
             No posts.
-        </p>
+        </div>
         <div class="row spacing" v-for="(post,index) in posts" :key="index">
             <div class="text-center post-container">
                 <div class="card">
@@ -68,6 +68,9 @@ export default {
     get_feed() {
       this.loading = true;
       this.$http.get("/feed").then(response => {
+        if(response.bodyText === "[]"){
+          this.loading = false;
+        }
         response.body.forEach(post => {
           this.$store.commit("add_post", post);
           this.loading = false;

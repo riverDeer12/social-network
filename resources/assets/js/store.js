@@ -43,6 +43,10 @@ export const store = new Vuex.Store({
 
         all_friends_count(state) {
             return state.friends.length
+        },
+
+        wall_likes_count(state){
+            
         }
     },
 

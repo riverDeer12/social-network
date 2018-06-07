@@ -7,7 +7,7 @@
         <div class="row">
 
             <!-- Modal for new post-->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="newPostModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -24,7 +24,7 @@
             </div>
 
             <div class="col-md-4 offset-4 text-center">
-                <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#newPostModal">
                     Do you want to post something?
                 </button>
                 <div class="card">

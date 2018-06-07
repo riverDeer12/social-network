@@ -17,10 +17,7 @@ export default {
     CommentsFeed
   },
 
-  http: {
-    root: "/root",
-    headers: { "X-CSRF-Token": $("meta[name=csrf-token]").attr("content") }
-  },
+  http: {root: "/root",headers: { "X-CSRF-Token": $("meta[name=csrf-token]").attr("content") }},
 
   methods: {
     post_comment(comment) {
@@ -29,6 +26,11 @@ export default {
           content: comment
         }).then(response => {
           this.$emit("newcomment", response.body);
+          this.$swal({
+            type: "success",
+            text: "Your new comment is successfully created",
+            confirmButtonColor: "#218838"
+          });
         });
     }
   }
