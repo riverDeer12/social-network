@@ -48,6 +48,8 @@ Vue.component('new-comment', require('./components/NewComment.vue'));
 Vue.component('comments-feed', require('./components/CommentsFeed.vue'));
 Vue.component('commentator', require('./components/Commentator.vue'));
 
+Vue.component('edit-post', require('./components/EditPost'));
+
 import {store} from "./store";
 
 const app = new Vue({

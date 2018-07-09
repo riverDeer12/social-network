@@ -1,18 +1,22 @@
 <template>
     <div>
         <button class="btn btn-success" v-if="!auth_user_liked_post" @click="like_post()">
-            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" alt="" width="20px" height="20px"> Like
+            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" alt="" width="20px"
+                 height="20px"> Like
         </button>
         <button class="btn btn-warning" v-else @click="unlike_post()">
-            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-down.svg" alt="" width="20px" height="20px"> Unlike
+            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-down.svg" alt="" width="20px"
+                 height="20px"> Unlike
         </button>
-          <a class="btn btn-link" data-toggle="modal" data-target="#likersModal">
-              <span class="btn btn-default"><img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" width="20px" height="20px">
+        <a class="btn btn-link" data-toggle="modal" :data-target="'#likersModal'+this.id">
+              <span class="btn btn-default" v-if="likers.length !== 0"><img
+                      src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" width="20px"
+                      height="20px">
                   {{ likers.length }}
               </span>
-          </a>
+        </a>
 
-        <div class="modal fade" id="likersModal" role="dialog">
+        <div class="modal fade" :id="'likersModal'+this.id" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -37,66 +41,65 @@
 </template>
 
 <script>
-export default {
-  mounted() {},
+    export default {
 
-  props: ["id"],
+        props: ["id"],
 
-  computed: {
-    likers() {
-      let likers = [];
-      this.post.likes.forEach(like => {
-        likers.push(like.user.id);
-      });
+        computed: {
+            likers() {
+                let likers = [];
+                this.post.likes.forEach(like => {
+                    likers.push(like.user.id);
+                });
 
-      return likers;
-    },
+                return likers;
+            },
 
-    auth_user_liked_post() {
-      let check_index = this.likers.indexOf(this.$store.state.auth_user.id);
+            auth_user_liked_post() {
+                let check_index = this.likers.indexOf(this.$store.state.auth_user.id);
 
-      if (check_index === -1) {
-        return false;
-      } else {
-        return true;
-      }
-    },
+                if (check_index === -1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
 
-    post() {
-      return this.$store.state.posts.find(post => {
-        return post.id === this.id;
-      });
-    }
-  },
+            post() {
+                return this.$store.state.posts.find(post => {
+                    return post.id === this.id;
+                });
+            }
+        },
 
-  methods: {
-    like_post() {
-      this.$http.get("/like_post/" + this.id).then(response => {
-        this.$store.commit("update_post_likes", {
-          id: this.id,
-          like: response.body
-        });
-      });
+        methods: {
+            like_post() {
+                this.$http.get("/like_post/" + this.id).then(response => {
+                    this.$store.commit("update_post_likes", {
+                        id: this.id,
+                        like: response.body
+                    });
+                });
 
-      this.$swal({
-        type: "success",
-        position: "bottom-left",
-        text: "Post liked",
-        showConfirmButton: false,
-        timer: 3000
-      });
-    },
+                this.$swal({
+                    type: "success",
+                    position: "bottom-left",
+                    text: "Post liked",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            },
 
-    unlike_post() {
-      this.$http.get("/unlike_post/" + this.id).then(response => {
-        this.$store.commit("unlike_post", {
-          id: this.id,
-          like_id: response.body
-        });
-      });
-    }
-  }
-};
+            unlike_post() {
+                this.$http.get("/unlike_post/" + this.id).then(response => {
+                    this.$store.commit("unlike_post", {
+                        id: this.id,
+                        like_id: response.body
+                    });
+                });
+            }
+        }
+    };
 </script>
 
 <style>

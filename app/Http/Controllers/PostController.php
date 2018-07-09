@@ -9,18 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
         return Post::create([
@@ -29,26 +17,25 @@ class PostController extends Controller
         ]);
     }
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return response()->json($post);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->content = $request->get('content');
+        $post->save();
+        return response()->json($post);
     }
 
 
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return $id;
     }
 }

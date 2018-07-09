@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <button class="btn btn-success float-right" :disabled="disabledSubmit" @click="create_post()">
-                Create new post
+                Create new post !
             </button>
         </div>
     </div>
@@ -43,6 +43,9 @@
                             type: 'success',
                             text: 'Your new post is successfully created',
                             confirmButtonColor: '#218838'
+                        })
+                        this.$store.commit('add_wall_post', {
+                            post: response.body
                         })
                     });
             },

@@ -77,7 +77,7 @@
             </div>
 
             <div class="col-md-4 text-center">
-                <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-success btn-lg spacing" data-toggle="modal" data-target="#createPostModal">
                     Do you want to post something?
                 </button>
                 <!-- Wall posts -->
@@ -85,7 +85,7 @@
             </div>
 
             <!-- New post modal -->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="createPostModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -100,6 +100,7 @@
 
                 </div>
             </div>
+
 
             <!-- Flash message -->
             <div class="col-md-3">

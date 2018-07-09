@@ -11,7 +11,7 @@
         </div>
         <div class="search-results-div" v-show="hiddenResults">
             <div class="list-group" v-if="results.length">
-                <span class="list-group-item" v-for="user in results">
+                <span class="list-group-item" v-for="(user, index) in results" :key="index">
                     <a :href="'/profile/' + user.username"><img :src="user.avatar"
                                                                 height="40px" width="40px"> {{ user.name}} </a>
                 </span>
@@ -27,10 +27,6 @@
     let index = client.initIndex('users');
 
     export default {
-        mounted() {
-
-        },
-
         data() {
             return {
                 query: '',

@@ -1,13 +1,17 @@
 <template>
     <div>
         <button class="btn btn-success" v-if="!auth_user_liked_wall_post" @click="like_wall_post()">
-            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" width="20px" height="20px"> Like
+            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" width="20px"
+                 height="20px"> Like
         </button>
         <button class="btn btn-warning" v-else @click="unlike_wall_post()">
-            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-down.svg" width="20px" height="20px"> Unlike
+            <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-down.svg" width="20px"
+                 height="20px"> Unlike
         </button>
         <a class="btn btn-link" data-toggle="modal" :data-target="'#likersModal'+this.id">
-            <span class="btn btn-default"><img src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" width="20px" height="20px">
+            <span class="btn btn-default" v-if="likers.length !== 0"><img
+                    src="https://use.fontawesome.com/releases/v5.0.10/svgs/regular/thumbs-up.svg" width="20px"
+                    height="20px">
                 {{ likers.length }}
             </span>
         </a>
@@ -37,72 +41,73 @@
 </template>
 
 <script>
-export default {
-  mounted() {},
+    export default {
+        mounted() {
+        },
 
-  props: ["id"],
+        props: ["id"],
 
-  data(){
-      return{
-          dataTarget: '#likersModal' + this.id
-      }
-  },
+        data() {
+            return {
+                dataTarget: '#likersModal' + this.id
+            }
+        },
 
-  computed: {
-    likers() {
-      let likers = [];
-      this.wall.likes.forEach(like => {
-        likers.push(like.user.id);
-      });
+        computed: {
+            likers() {
+                let likers = [];
+                this.wall.likes.forEach(like => {
+                    likers.push(like.user.id);
+                });
 
-      return likers;
-    },
+                return likers;
+            },
 
-    auth_user_liked_wall_post() {
-      let check_index = this.likers.indexOf(this.$store.state.auth_user.id);
+            auth_user_liked_wall_post() {
+                let check_index = this.likers.indexOf(this.$store.state.auth_user.id);
 
-      if (check_index === -1) {
-        return false;
-      } else {
-        return true;
-      }
-    },
+                if (check_index === -1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
 
-    wall() {
-      return this.$store.state.wall.find(wall => {
-        return wall.id === this.id;
-      });
-    }
-  },
+            wall() {
+                return this.$store.state.wall.find(wall => {
+                    return wall.id === this.id;
+                });
+            }
+        },
 
-  methods: {
-    like_wall_post() {
-      this.$http.get("/like_post/" + this.id).then(response => {
-        this.$store.commit("update_wall_post_likes", {
-          id: this.id,
-          like: response.body
-        });
-      });
+        methods: {
+            like_wall_post() {
+                this.$http.get("/like_post/" + this.id).then(response => {
+                    this.$store.commit("update_wall_post_likes", {
+                        id: this.id,
+                        like: response.body
+                    });
+                });
 
-      this.$swal({
-        type: "success",
-        position: "bottom-left",
-        text: "Wall post liked",
-        showConfirmButton: false,
-        timer: 3000
-      });
-    },
+                this.$swal({
+                    type: "success",
+                    position: "bottom-left",
+                    text: "Wall post liked",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            },
 
-    unlike_wall_post() {
-      this.$http.get("/unlike_post/" + this.id).then(response => {
-        this.$store.commit("unlike_wall_post", {
-          id: this.id,
-          like_id: response.body
-        });
-      });
-    }
-  }
-};
+            unlike_wall_post() {
+                this.$http.get("/unlike_post/" + this.id).then(response => {
+                    this.$store.commit("unlike_wall_post", {
+                        id: this.id,
+                        like_id: response.body
+                    });
+                });
+            }
+        }
+    };
 </script>
 
 <style>

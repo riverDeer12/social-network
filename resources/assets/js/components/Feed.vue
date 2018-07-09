@@ -7,15 +7,15 @@
             No posts.
         </div>
         <div class="row spacing" v-for="(post,index) in posts" :key="index">
-            <div class="text-center post-container">
+            <div class="post-container">
                 <div class="card">
                     <div class="card-header">
                         <img class="post-user-image" :src="post.user.avatar">
-                        <span>{{ post.user.name }}</span>
+                        <span class="text-center">{{ post.user.name }}</span>
                     </div>
                     <div class="card-body text-center">
                         {{ post.content }}
-                        <hr />
+                        <hr/>
                         <div class="float-left">
                             <like :id="post.id"></like>
                         </div>
@@ -33,67 +33,67 @@
 </template>
 
 <script>
-import Like from "./Like.vue";
-import PostComments from "./PostComments.vue";
+    import Like from "./Like.vue";
+    import PostComments from "./PostComments.vue";
 
-let moment = require("moment");
-export default {
-  created() {
-    this.get_feed();
-  },
+    let moment = require("moment");
+    export default {
+        created() {
+            this.get_feed();
+        },
 
-  data() {
-    return {
-      moment: moment,
-      loading: true
-    };
-  },
+        data() {
+            return {
+                moment: moment,
+                loading: true,
+            };
+        },
 
-  computed: {
-    posts() {
-      return this.$store.getters.all_posts;
-    },
+        computed: {
+            posts() {
+                return this.$store.getters.all_posts;
+            },
 
-    postsNumber() {
-      return this.$store.getters.all_posts_count;
-    }
-  },
+            postsNumber() {
+                return this.$store.getters.all_posts_count;
+            }
+        },
 
-  components: {
-    Like,
-    PostComments
-  },
+        components: {
+            Like,
+            PostComments
+        },
 
-  methods: {
-    get_feed() {
-      this.loading = true;
-      this.$http.get("/feed").then(response => {
-        if(response.bodyText === "[]"){
-          this.loading = false;
+        methods: {
+            get_feed() {
+                this.loading = true;
+                this.$http.get("/feed").then(response => {
+                    if (response.bodyText === "[]") {
+                        this.loading = false;
+                    }
+                    response.body.forEach(post => {
+                        this.$store.commit("add_post", post);
+                        this.loading = false;
+                    });
+                });
+            }
         }
-        response.body.forEach(post => {
-          this.$store.commit("add_post", post);
-          this.loading = false;
-        });
-      });
-    }
-  }
-};
+    };
 </script>
 
 <style>
-.spacing {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+    .spacing {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-.post-user-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
+    .post-user-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
 
-.post-container {
-  width: 100%;
-}
+    .post-container {
+        width: 100%;
+    }
 </style>
